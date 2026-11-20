@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lari Kuy! Trivia Nostalgia 90an &amp; 2000an</title>
+<meta name="description" content="Lari Kuy! Trivia nostalgia anak 90an dan 2000an dengan ranking mingguan.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🏃%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--top:#43109a;--mid:#7c3aed;--card:#fff;--ink:#27272a;--mute:#9ca3af;--opt:#fff;--optline:#ececf1;--ok:#22c55e;--okbg:#dcfce7;--okline:#86efac;--bad:#ef4444;--badbg:#fee2e2;--badline:#fca5a5;--pill:#8b3dff;--gr:#86e58f;--grsh:#5bbd69;--sel:#7c3aed;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--top:#1e0a47;--mid:#3b1d82;--card:#231a3a;--ink:#f4f0ff;--mute:#a79cc2;--opt:#2c2147;--optline:#3d3160;--okbg:#14351f;--okline:#2f7a47;--badbg:#3d1a1f;--badline:#8a3a43}}
+:root[data-theme="dark"]{--top:#1e0a47;--mid:#3b1d82;--card:#231a3a;--ink:#f4f0ff;--mute:#a79cc2;--opt:#2c2147;--optline:#3d3160;--okbg:#14351f;--okline:#2f7a47;--badbg:#3d1a1f;--badline:#8a3a43}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;position:relative;min-height:100vh;min-height:100dvh;background:var(--mid);color:var(--ink);font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+body::before{content:"";position:absolute;z-index:0;left:-10%;right:-10%;top:0;height:330px;background:var(--top);border-radius:0 0 50% 50%/0 0 60px 60px}
+main{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:18px 18px 36px}
+.hide{display:none!important}
+button{font:inherit;cursor:pointer;border:0}
+.ttl{color:#fff;text-align:center;margin:6px 0 18px}.ttl h1{font-size:28px;margin:0;font-weight:800}.ttl p{margin:4px 0 0;opacity:.8;font-size:14px}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#fff;margin-bottom:18px}
+.ibtn{width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.16);color:#fff;font-size:22px}
+.hdr h2{margin:0;font-size:18px;font-weight:700}
+.cnt{text-align:center;font-weight:700;font-size:18px;line-height:1.2}.cnt small{display:block;font-weight:500;font-size:12px;opacity:.8}
+.tm{background:var(--pill);color:#fff;font-weight:700;padding:10px 14px;border-radius:99px;min-width:96px;text-align:center;font-variant-numeric:tabular-nums}
+.tm.warn{background:#ef4444}
+.prog{height:12px;border-radius:99px;background:rgba(0,0,0,.35);overflow:hidden;margin-bottom:12px}
+.prog i{display:block;height:100%;width:0;background:#3fb97a;border-radius:99px;transition:width .35s}
+.meta{display:flex;align-items:center;justify-content:space-between;color:#fff;font-size:13px;font-weight:600;margin-bottom:14px}
+.meta span{display:flex;align-items:center;gap:8px}
+.card{position:relative;background:var(--card);border-radius:28px;padding:22px 18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.stack{position:relative;padding-bottom:14px}
+.stack::before,.stack::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:40px;border-radius:0 0 26px 26px;background:rgba(255,255,255,.4);z-index:-1}
+.stack::after{left:36px;right:36px;bottom:-12px;background:rgba(255,255,255,.22)}
+.cat{color:var(--mute);font-size:14px;font-weight:500;margin-bottom:8px}
+.vis{font-size:52px;line-height:1.1;margin:0 0 10px}
+.q{font-size:20px;font-weight:700;line-height:1.5;margin:0 0 18px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;background:var(--opt);color:var(--ink);border:2px solid var(--optline);border-radius:99px;padding:15px 20px;margin-bottom:12px;font-weight:600;font-size:15px;min-height:58px}
+.opt:hover:not(:disabled){border-color:var(--sel)}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--okbg);border-color:var(--okline)}.opt.bad{background:var(--badbg);border-color:var(--badline)}
+.ic{flex:none;width:30px;height:30px;border-radius:50%;display:none;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:800}
+.ok .ic{display:flex;background:var(--ok)}.bad .ic{display:flex;background:var(--bad)}
+.fb{white-space:pre-line;font-size:14px;line-height:1.55;border-radius:16px;padding:12px 14px;margin-top:4px;background:var(--opt);border-left:5px solid var(--mute)}
+.fb.ok{border-color:var(--ok)}.fb.bad{border-color:var(--bad)}
+.next,.cta{display:block;width:min(100%,280px);margin:26px auto 0;background:var(--gr);color:#fff;font-weight:800;font-size:20px;padding:15px;border-radius:99px;box-shadow:0 6px 0 var(--grsh);text-shadow:0 1px 0 rgba(0,0,0,.12)}
+.next:active,.cta:active{transform:translateY(4px);box-shadow:0 2px 0 var(--grsh)}
+.next:disabled{opacity:.55;box-shadow:0 6px 0 var(--grsh);transform:none;cursor:default}
+.sec{display:block;width:min(100%,280px);margin:16px auto 0;background:rgba(255,255,255,.18);color:#fff;font-weight:700;font-size:15px;padding:12px;border-radius:99px}
+.card .sec{background:var(--opt);color:var(--ink);border:2px solid var(--optline)}
+.av{--s:44px;width:var(--s);height:var(--s);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:calc(var(--s)*.55);flex:none;box-shadow:inset 0 0 0 3px rgba(255,255,255,.7)}
+.center{text-align:center}
+.lbl{font-weight:700;margin:14px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;justify-items:center}
+.pick{background:transparent;padding:4px;border-radius:50%;border:3px solid transparent}
+.pick.sel{border-color:var(--sel)}
+input{width:100%;font:inherit;font-weight:600;font-size:16px;padding:14px 18px;border-radius:99px;border:2px solid var(--optline);background:var(--opt);color:var(--ink)}
+input:focus{outline:none;border-color:var(--sel)}
+.err{color:var(--bad);font-size:13px;min-height:18px;margin:6px 4px 0}
+.rule{font-size:12px;color:var(--mute);text-align:center;margin:12px 0 0;line-height:1.6}
+.big{font-size:60px;font-weight:800;color:var(--sel);margin:4px 0}
+.row{display:flex;align-items:center;gap:12px;background:var(--opt);border:2px solid var(--optline);border-radius:99px;padding:8px 18px 8px 10px;margin-bottom:10px;font-weight:600}
+.row .rk{width:30px;text-align:center;font-weight:800;color:var(--mute)}
+.row .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .sc{font-weight:800;color:var(--sel)}
+.row.me{border-color:var(--sel)}
+.note{font-size:12px;color:var(--mute);text-align:center;margin:10px 0 0}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:24px;z-index:20}
+.ov .card{width:100%;max-width:340px;text-align:center}
+
+.wk{color:#fff;text-align:center;margin:-6px 0 20px;font-size:13px;opacity:.95}.wk b{display:block;font-size:15px}
+.podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end;margin:8px 0 20px}
+.pc{display:flex;flex-direction:column;align-items:center;min-width:0}
+.pc .pn{color:#fff;font-weight:700;font-size:13px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:6px}
+.pc .ps{color:#fde68a;font-weight:800;font-size:14px;margin-bottom:6px}
+.pc .crown{font-size:26px;height:30px;line-height:30px}
+.step{width:100%;border-radius:14px 14px 0 0;display:flex;justify-content:center;padding-top:10px;font-size:32px;font-weight:800;color:#fff;box-shadow:inset 0 3px 0 rgba(255,255,255,.35)}
+.s1{height:140px;background:linear-gradient(#fbbf24,#d97706)}.s2{height:104px;background:linear-gradient(#cbd5e1,#64748b)}.s3{height:78px;background:linear-gradient(#e0a370,#9a5b2b)}
+.pc.empty .av{opacity:.35;filter:grayscale(1)}
+@media (min-width:700px){main{max-width:660px;padding:32px 24px 56px}.ttl h1{font-size:38px}.ttl p{font-size:16px}.q{font-size:24px}.opt{font-size:17px;padding:17px 26px;min-height:62px}.card{padding:30px 28px}.grid{grid-template-columns:repeat(6,1fr)}.cta{font-size:22px}.s1{height:170px}.s2{height:126px}.s3{height:94px}.pc .pn{font-size:15px}.rule{font-size:13px}}
+@media (min-width:1000px){body::before{height:400px}.stack::before{left:26px;right:26px}}
+@media (max-width:380px){.q{font-size:18px}.opt{font-size:14px;padding:12px 16px;min-height:52px}.cnt{font-size:16px}.tm{min-width:84px;padding:9px 10px;font-size:14px}.grid{gap:6px}}
+</style>
+</head>
+<body>
+<main>
+<div class="ttl" id="ttl"><h1>🏃💨 Lari Kuy!</h1><p>Trivia nostalgia anak 90an &amp; 2000an. Ngegas atau ketinggalan!</p></div>
+
+<section id="vHome">
+<div class="card center">
+<div id="prev" style="display:flex;justify-content:center"></div>
+<div class="lbl">Pilih avatarmu</div>
+<div class="grid" id="grid"></div>
+<div class="lbl" style="text-align:left">Username</div>
+<input id="uname" maxlength="16" placeholder="contoh: PelariPagi" autocomplete="off">
+<div class="err" id="err"></div>
+<p class="rule">Siap lari lewat nostalgia? Jawab bener, jawab ngebut, jaga streak, dan jangan kaget kalau ketemu soal receh yang bikin ketawa. Ranking mingguan di-reset tiap Senin, jadi semua punya kesempatan naik podium! 🏆</p>
+</div>
+<button class="cta" id="go">Mulai Main</button>
+<button class="sec" id="lb1">🏆 Ranking Mingguan</button>
+</section>
+
+<section id="vQuiz" class="hide">
+<div class="hdr"><button class="ibtn" id="back" aria-label="Kembali">←</button>
+<div class="cnt"><span id="qn">01</span> dari <span id="tot">20</span></div>
+<div class="tm" id="tm">⏱ 00:15</div></div>
+<div class="prog"><i id="bar"></i></div>
+<div class="meta"><span id="who"></span><span>⭐ <b id="pts">0</b> · 🔥 <b id="stk">0</b></span></div>
+<div class="stack"><div class="card">
+<div class="cat" id="qc"></div><div class="vis" id="qv"></div><p class="q" id="qt"></p>
+<div id="opts"></div><div class="fb hide" id="fb"></div>
+</div></div>
+<button class="next" id="next" disabled>Lanjut</button>
+</section>
+
+<section id="vEnd" class="hide">
+<div class="card center">
+<h2 style="margin:0 0 10px">Finish! 🏁</h2>
+<div id="endav" style="display:flex;justify-content:center"></div>
+<div class="lbl" id="endname"></div>
+<div class="big" id="final">0</div>
+<div class="rule" style="font-size:14px" id="endmsg"></div>
+</div>
+<button class="cta" id="again">Main Lagi</button>
+<button class="sec" id="lb2">🏆 Ranking Mingguan</button>
+<button class="sec" id="home2">Ganti avatar / nama</button>
+</section>
+
+<section id="vLb" class="hide">
+<div class="hdr"><button class="ibtn" id="lbBack" aria-label="Kembali">←</button><h2>🏆 Ranking Mingguan</h2><span style="width:46px"></span></div>
+<div class="wk"><b id="wkRange"></b><span id="wkLeft"></span></div>
+<div class="podium" id="podium"></div>
+<div id="lbList"></div>
+<p class="note" style="color:rgba(255,255,255,.8)" id="lbNote"></p>
+</section>
+</main>
+
+<div class="ov hide" id="modal"><div class="card">
+<h2 style="margin:0 0 6px">Keluar dari permainan?</h2>
+<p class="rule" style="font-size:14px;margin:0 0 6px">Skor putaran ini tidak akan disimpan.</p>
+<button class="cta" id="stay" style="margin-top:18px;font-size:17px">Lanjut main</button>
+<button class="sec" id="quit">Keluar</button>
+</div></div>
+
+<script src="config.js"></script>
+<script>
+const BANK=[
+["Berapa jarak maraton penuh?",["21,0975 km","42,195 km","50 km","36 km"],1,"Jarak resmi maraton penuh adalah 42,195 km. Half marathon separuhnya, sekitar 21 km."],
+["PB atau PR dalam dunia lari kepanjangan dari?",["Personal Best / Personal Record","Pace Bagus","Podium Baru","Power Booster"],0,"PB (Personal Best) atau PR (Personal Record) adalah catatan waktu terbaikmu sendiri untuk satu jarak. Yang dilawan adalah dirimu yang kemarin."],
+["Usain Bolt memecahkan rekor dunia 100 m di Olimpiade Beijing 2008 dengan waktu?",["9,58 detik","9,69 detik","9,79 detik","9,83 detik"],1,"Di Beijing 2008 Bolt mencatat 9,69 detik. Rekor dunia terbarunya, 9,58 detik, baru tercipta di Berlin 2009."],
+["Berapa jarak half marathon?",["10 km","15 km","21,0975 km","30 km"],2,"Half marathon berarti setengah maraton: sekitar 21,0975 km."],
+["Bolt berasal dari negara mana?",["Kenya","Amerika Serikat","Jamaika","Ethiopia"],2,"Usain Bolt lahir di Jamaika, negara yang melahirkan banyak sprinter kelas dunia."],
+["Logo “swoosh” adalah milik merek sepatu?",["Adidas","Puma","Nike","Asics"],2,"Swoosh, logo centang melengkung, milik Nike. Namanya diambil dari dewi kemenangan Yunani."],
+["Merek dengan logo tiga garis?",["Adidas","New Balance","Reebok","Mizuno"],0,"Tiga garis sejajar adalah ciri khas Adidas."],
+["Sensor Nike+ di sepatu era 2000-an terhubung ke perangkat apa?",["Walkman","iPod Nano","Tamagotchi","PSP"],1,"Nike+iPod (2006) memasang sensor di sepatu yang mengirim data jarak dan kecepatan ke iPod Nano."],
+["“Runner’s high” adalah?",["Lari di dataran tinggi","Rasa euforia saat atau sesudah lari","Lari paling cepat","Sepatu lari tinggi"],1,"Runner’s high adalah rasa senang dan ringan setelah lari cukup lama, sering dikaitkan dengan pelepasan endorfin."],
+["Nama “maraton” berasal dari kota di negara?",["Italia","Mesir","Yunani","Turki"],2,"Namanya dari kota Marathon di Yunani, tempat legenda pelari yang membawa kabar kemenangan ke Athena."],
+["Eliud Kipchoge mencatat maraton di bawah 2 jam (tidak resmi) di kota?",["Berlin","Wina","Tokyo","Boston"],1,"Di Wina 2019 Kipchoge menempuh maraton dalam 1:59:40. Tidak diakui sebagai rekor resmi karena memakai pemandu lari bergantian dan kondisi khusus."],
+["Lalu Muhammad Zohri juara dunia lari 100 m U20 pada tahun?",["2014","2016","2018","2021"],2,"Zohri juara dunia lari 100 m U20 di Tampere, Finlandia, pada 2018 dengan catatan 10,18 detik."],
+["Benda yang diserahterimakan dalam lari estafet disebut?",["Baton","Tongkat Komando","Bendera","Pita"],0,"Tongkat yang dioper antar pelari estafet disebut baton, dan harus diserahkan di zona pergantian."],
+["5K berarti berapa meter?",["500","2.500","5.000","10.000"],2,"K berarti kilometer, jadi 5K = 5 km = 5.000 meter."],
+["Satu putaran lintasan atletik standar berapa meter?",["200","400","800","1.000"],1,"Satu putaran lintasan atletik standar adalah 400 m, jadi 5.000 m butuh 12,5 putaran."],
+["Haile Gebrselassie, legenda lari jarak jauh, berasal dari?",["Ethiopia","Brasil","Jepang","Norwegia"],0,"Gebrselassie berasal dari Ethiopia, negara yang terkenal dengan pelari jarak jauh."],
+["Aplikasi populer untuk mencatat lari dan berbagi ke teman?",["Strava","Spotify","Shazam","Waze"],0,"Strava dipakai untuk merekam lari, melihat rute, dan berbagi ke teman."],
+["Fungsi utama cooling down setelah lari?",["Menambah kecepatan","Menurunkan detak jantung bertahap","Membakar lemak instan","Mengurangi tinggi badan"],1,"Cooling down menurunkan detak jantung dan napas secara perlahan, tidak mendadak berhenti."],
+["Pace 6:00 menit/km, berapa lama kamu menyelesaikan 10K?",["45 menit","50 menit","60 menit","75 menit"],2,"Pace 6:00 menit per km dikali 10 km sama dengan 60 menit."],
+["Lari 100 m termasuk kategori?",["Sprint","Ultra","Lari lintas alam","Maraton"],0,"Lari jarak pendek dengan kecepatan maksimal disebut sprint."],
+["Alat apa ini yang dipakai untuk mencatat waktu lari?",["Stopwatch","Kompas","Termometer","Metronom"],0,"Stopwatch dipakai mencatat waktu lari hingga sepersekian detik.","⏱️","g"],
+["Bendera kotak-kotak ini identik dengan apa?",["Garis finis","Mulai upacara","Area parkir","Tim kalah"],0,"Bendera kotak-kotak hitam putih identik dengan garis finis.","🏁","g"],
+["Pakaian lari tanpa lengan ini disebut?",["Singlet","Jaket","Sweater","Rompi"],0,"Singlet tanpa lengan ringan dan sirkulasi udaranya baik, jadi nyaman buat lari.","🎽","g"],
+["Urutan medali dari juara 1 sampai 3?",["Emas, perak, perunggu","Perak, emas, perunggu","Perunggu, perak, emas","Emas, perunggu, perak"],0,"Juara 1 emas, juara 2 perak, juara 3 perunggu.","🥇🥈🥉","g"],
+["Gambar ini paling cocok menggambarkan lari jenis apa?",["Sprint","Jalan santai","Tidur siang","Lompat tali"],0,"Lari cepat jarak pendek, misalnya 100 m, disebut sprint.","🏃💨","g"],
+["Lomba lari beregu dengan oper tongkat ini namanya?",["Estafet","Maraton","Lari gawang","Lari rintang"],0,"Estafet dilakukan beregu dengan mengoper baton antar pelari.","🏃🤝🏃➡️","g"],
+["Stadion atletik standar kompetisi umumnya punya berapa lajur lintasan?",["4","6","8","12"],2,"Lintasan kompetisi umumnya punya 8 lajur, sebagian stadion punya 9.","🏟️","g"],
+["Satu anak menutup mata sambil menghitung, yang lain bersembunyi. Permainan apa?",["Petak umpet","Engklek","Lompat tali","Congklak"],0,"Di petak umpet, penjaga menghitung dengan mata tertutup sementara yang lain bersembunyi.","🙈","m"],
+["Tim penjaga menjaga garis, tim lawan harus menyeberang tanpa tersentuh. Permainan apa?",["Gobak sodor","Bola bekel","Kelereng","Gasing"],0,"Di gobak sodor, penjaga menjaga garis dan penyerang berusaha lewat tanpa tersentuh. Butuh lari dan kelincahan.","🏃↔️🛑","m"],
+["Gobak sodor di beberapa daerah juga dikenal dengan nama?",["Galasin","Gasing","Gundu","Gembot"],0,"Gobak sodor sering juga disebut galasin atau galah asin di berbagai daerah.","","m"],
+["Dua tim saling merebut benteng lawan sambil kejar-kejaran. Permainan apa?",["Bentengan","Congklak","Layangan","Ular tangga"],0,"Di bentengan, dua tim saling berusaha menyentuh benteng lawan sambil menghindari tangkapan.","🏰🏃","m"],
+["Lomba lompat dengan kaki di dalam karung identik dengan perayaan?",["17 Agustus","Natal","Imlek","Tahun baru"],0,"Balap karung dilombakan saat perayaan 17 Agustus. Peserta melompat dengan kaki di dalam karung.","🦘","m"],
+["Permainan berjalan di atas dua bambu yang dipijak disebut?",["Egrang","Engklek","Dakon","Pletokan"],0,"Egrang dimainkan dengan berdiri dan berjalan di atas dua batang bambu.","🎋🚶","m"],
+["Melompat satu kaki di kotak gambar di tanah. Permainan apa?",["Engklek","Gobak sodor","Bentengan","Gasing"],0,"Engklek dimainkan dengan melompat satu kaki di kotak yang digambar di tanah.","🦶","m"],
+["Permainan tradisional mana yang paling banyak butuh lari?",["Bentengan","Congklak","Bekel","Ular tangga"],0,"Bentengan paling banyak butuh lari karena pemain terus mengejar dan menghindar.","","m"],
+["Hewan peliharaan virtual di layar kecil yang hits tahun 1996?",["Tamagotchi","Rubik","Yoyo","Gasing"],0,"Tamagotchi dirilis Bandai pada 1996. Pemiliknya harus memberi makan dan merawat hewan di layar.","🥚📟","n"],
+["Konsol genggam Nintendo legendaris yang dimainkan banyak anak 90an?",["Game Boy","PSP","Switch","Atari 7800"],0,"Game Boy dari Nintendo dirilis 1989 dan tetap populer sepanjang 90an.","🎮","n"],
+["Pemutar kaset portabel jadul dengan earphone ini disebut?",["Walkman","iPod","Flashdisk","Streaming"],0,"Walkman buatan Sony memutar kaset secara portabel lewat earphone.","📼🎧","n"],
+["Mobil mini bermotor baterai yang dibalapkan di lintasan, hits anak 90an?",["Tamiya","Lego","Barbie","Monopoli"],0,"Tamiya Mini 4WD adalah mobil mini bermotor baterai yang dibalapkan di lintasan.","🏎️","n"],
+["Camilan Chitato dulu sering berhadiah koin plastik koleksi bernama?",["Tazos","Stiker","Kartu remi","Gundu"],0,"Tazos adalah koin atau kartu plastik koleksi yang dulu ada di camilan seperti Chitato.","🍟","n"],
+["Kartun Minggu pagi tentang robot kucing biru berkantong ajaib?",["Doraemon","Naruto","Spongebob","Ben 10"],0,"Doraemon adalah robot kucing dari masa depan dengan kantong ajaib.","📺","n"],
+["Michael Johnson juara ganda 200 m dan 400 m di Olimpiade Atlanta 1996 dengan sepatu berwarna?",["Emas","Merah","Hijau","Hitam"],0,"Johnson memenangi 200 m dan 400 m di Atlanta 1996 dengan sepatu emas yang ikonik.","👟","n"],
+["Di Olimpiade Atlanta 1996 Indonesia meraih emas lewat cabang?",["Bulu tangkis","Atletik","Renang","Sepak bola"],0,"Ganda putra bulu tangkis, Ricky Subagja dan Rexy Mainaky, meraih emas bagi Indonesia di Atlanta 1996.","🏸","n"],
+["10K berarti berapa meter?",["10.000","1.000","100.000","5.000"],0,"10K = 10 kilometer = 10.000 meter, sekitar 25 putaran lintasan 400 m.","","l"],
+["DNF dalam hasil lomba lari artinya?",["Did Not Finish","Done Not Fast","Daily New Form","Double Nice Finish"],0,"DNF = Did Not Finish, tercatat untuk peserta yang tidak menyelesaikan lomba.","","l"],
+["Nomor dada yang dipasang pelari saat lomba disebut?",["BIB","Tag Nama","Pin Medali","Stiker Finis"],0,"BIB adalah nomor dada peserta untuk pencatatan waktu dan identitas.","","l"],
+["Sepatu berpaku ringan untuk sprint disebut?",["Spikes","Sandal gunung","Sepatu formal","Sepatu hak"],0,"Spikes punya paku kecil di bawah sol untuk cengkeraman di lintasan.","","l"],
+["Lari dengan melompati pagar rintangan disebut?",["Lari gawang","Estafet","Maraton","Lompat jauh"],0,"Lari gawang (hurdles) mengharuskan pelari melompati rintangan di tiap lajur.","","l"],
+["Negara Afrika Timur yang terkenal melahirkan pelari jarak jauh, selain Ethiopia?",["Kenya","Mesir","Maroko","Nigeria"],0,"Kenya terkenal melahirkan pelari jarak jauh kelas dunia, banyak dari dataran tinggi Rift Valley.","","l"],
+["Pemanasan sebelum lari bertujuan untuk?",["Menyiapkan otot dan mengurangi risiko cedera","Membuat cepat lelah","Menambah tinggi badan","Menggantikan minum"],0,"Pemanasan menaikkan suhu otot dan melancarkan aliran darah sehingga risiko cedera lebih kecil.","","l"],
+["Cairan yang keluar saat lari untuk mendinginkan tubuh?",["Keringat","Air mata","Ludah","Embun"],0,"Keringat menguap dari kulit sehingga suhu tubuh turun saat lari.","🥵💦","g"],
+["Organ yang bekerja lebih keras dan berdetak lebih cepat saat lari?",["Jantung","Lambung","Rambut","Kuku"],0,"Jantung berdetak lebih cepat untuk memompa darah dan oksigen ke otot.","🫀","g"],
+["Lari di jalur alam seperti hutan dan bukit disebut?",["Trail run","Treadmill","Fun run","Lari gawang"],0,"Trail run adalah lari di jalur tanah, hutan, atau bukit, bukan di aspal.","⛰️🏃","g"],
+["Hal terpenting yang dibawa saat lari jauh di cuaca panas?",["Air minum","Payung besar","Bantal","Buku tebal"],0,"Air minum menjaga hidrasi karena tubuh banyak kehilangan cairan lewat keringat.","💧","g"],
+["Alat ini biasa dipakai pelari untuk melacak jarak dan rute?",["Jam GPS","Termos","Kompor","Timbangan dapur"],0,"Jam GPS mencatat jarak, pace, dan rute lari secara otomatis.","⌚🛰️","g"],
+["Lomba menarik tali oleh dua tim yang saling tarik disebut?",["Tarik tambang","Balap karung","Egrang","Panjat pinang"],0,"Tarik tambang mengandalkan kekompakan dua tim yang saling menarik tali.","🪢","m"],
+["Panjat pinang identik dengan perayaan?",["17 Agustus","Natal","Valentine","Halloween"],0,"Panjat pinang adalah lomba memanjat batang pinang licin demi hadiah, khas perayaan 17 Agustus.","🌴","m"],
+["Dalam kasti, setelah memukul bola pemain harus berlari ke?",["Tiang atau pos","Gawang","Ring basket","Net"],0,"Kasti mirip bisbol: setelah memukul bola, pemain berlari ke tiang.","🥎","m"],
+["Lomba membawa kelereng di atas sendok sambil berjalan cepat termasuk lomba?",["17 Agustus","Olimpiade","Piala Dunia","SEA Games"],0,"Lomba kelereng di sendok melatih keseimbangan, khas lomba Agustusan.","🥄","m"],
+["Konsol Sony generasi pertama yang populer akhir 90an?",["PlayStation","Wii","Xbox","Switch"],0,"PlayStation pertama Sony rilis 1994 di Jepang dan sangat populer di akhir 90an.","🎮","n"],
+["Tempat menelepon umum di Indonesia era 90an?",["Wartel","Warnet","Warteg","Wartawan"],0,"Wartel (warung telekomunikasi) menyediakan telepon umum berbayar.","☎️","n"],
+["Piala Dunia sepak bola 1998 dimenangkan oleh?",["Prancis","Brasil","Jerman","Italia"],0,"Prancis juara Piala Dunia 1998 sebagai tuan rumah.","⚽","n"],
+["Alat penerima pesan singkat sebelum SMS populer?",["Pager","Radio","Tablet","Kamera"],0,"Pager menerima pesan singkat sebelum SMS dan ponsel meluas.","📟","n"],
+["Tokoh game Mario bekerja sebagai?",["Tukang ledeng","Dokter","Pilot","Koki"],0,"Mario adalah tukang ledeng (plumber) dalam gamenya.","🍄","n"],
+["Konsol genggam Sony yang rilis tahun 2004?",["PSP","Game Boy","Switch","Atari"],0,"PlayStation Portable (PSP) dirilis Sony pada 2004.","🎮","k"],
+["Pemutar musik Apple yang meledak di awal 2000an?",["iPod","Walkman","Discman","Pager"],0,"iPod dirilis Apple pada 2001 dan membuat musik digital portabel jadi populer.","🎧","k"],
+["Situs pertemanan populer 2000an yang punya fitur testimonial?",["Friendster","TikTok","Threads","Zoom"],0,"Friendster populer sekitar 2004-2008 dengan fitur testimonial antar teman.","👥","k"],
+["Aplikasi chat 2000an dengan fitur BUZZ yang bikin layar bergetar?",["Yahoo Messenger","WhatsApp","Telegram","Signal"],0,"Yahoo Messenger punya fitur BUZZ yang membuat jendela chat bergetar.","💬","k"],
+["Fitur chat khas ponsel BlackBerry yang hits di Indonesia?",["BBM","Line","Skype","Snapchat"],0,"BBM (BlackBerry Messenger) sangat populer di Indonesia pada akhir 2000an.","📱","k"],
+["Format lagu digital paling populer di era 2000an?",["MP3","Kaset","Piringan hitam","VHS"],0,"MP3 adalah format musik digital yang sangat populer di era 2000an.","💽","k"],
+["Olimpiade 2004 diadakan di kota?",["Athena","Beijing","Atlanta","Sydney"],0,"Olimpiade 2004 diadakan di Athena, Yunani, tempat asal tradisi maraton.","🏛️","k"],
+["Piala Dunia 2002 diadakan bersama oleh Jepang dan?",["Korea Selatan","China","Thailand","Australia"],0,"Piala Dunia 2002 diadakan bersama oleh Korea Selatan dan Jepang.","⚽","k"],
+["Stadion utama Olimpiade Beijing 2008 berjuluk?",["Sarang Burung","Kubus Air","Menara Emas","Naga Merah"],0,"Stadion Nasional Beijing dijuluki Sarang Burung karena bentuk rangka bajanya.","🏟️","k"],
+["Tempat main internet dengan bayar per jam yang hits di 2000an?",["Warnet","Wartel","Warteg","Warkop"],0,"Warnet (warung internet) menyewakan komputer dengan tarif per jam.","🖥️","k"],
+["Bagian sepatu lari yang meredam benturan saat mendarat?",["Midsole","Tali","Lidah sepatu","Label"],0,"Midsole adalah lapisan di antara sol luar dan bagian atas yang meredam benturan.","👟","s"],
+["Sepatu lari umumnya diganti setelah sekitar berapa km?",["500-800 km","10 km","50 km","5.000 km"],0,"Patokan umum 500-800 km, bergantung model, berat badan, dan permukaan lari.","","s"],
+["Kaki yang berputar terlalu ke dalam saat mendarat disebut?",["Overpronasi","Hiperaktif","Supinasi sempurna","Hipotermia"],0,"Overpronasi adalah kaki berputar terlalu ke dalam saat mendarat.","","s"],
+["Sepatu dengan tapak bergerigi untuk jalur alam disebut?",["Trail shoes","Sepatu formal","Sandal jepit","Sepatu hak"],0,"Trail shoes bertapak bergerigi untuk cengkeraman di jalur tanah atau berbatu.","⛰️","s"],
+["Bagian sepatu yang membungkus punggung kaki disebut?",["Upper","Outsole","Heel counter terbalik","Insole"],0,"Upper adalah bagian atas sepatu yang membungkus kaki.","","s"],
+["Adidas dan Puma didirikan oleh dua bersaudara dari negara?",["Jerman","Jepang","Amerika Serikat","Inggris"],0,"Adidas dan Puma didirikan oleh dua bersaudara Dassler di Herzogenaurach, Jerman.","","s"],
+["Nama Nike berasal dari dewi kemenangan dari bangsa?",["Yunani","Romawi","Mesir","Persia"],0,"Nike adalah dewi kemenangan dalam mitologi Yunani.","🏆","s"],
+["ASICS adalah merek sepatu olahraga dari negara?",["Jepang","Brasil","Prancis","India"],0,"ASICS berasal dari Jepang.","","s"],
+["Ruang di depan jari kaki pada sepatu lari sebaiknya sekitar?",["Selebar ibu jari","Tidak ada ruang","Sepanjang telapak","Setengah sepatu"],0,"Sisakan ruang sekitar selebar ibu jari agar jari tidak menghantam ujung sepatu.","","s"],
+["Waktu yang disarankan untuk mengukur kaki saat membeli sepatu lari?",["Sore hari","Tengah malam","Bangun tidur","Tidak perlu"],0,"Kaki cenderung sedikit membengkak di sore hari, jadi ukurannya lebih pas.","","s"],
+["Lari apa yang tidak butuh sepatu dan tidak ada garis finisnya?",["Lari dari kenyataan","Lari pagi","Lari maraton","Lari estafet"],0,"Semua orang pernah ikut lomba ini, dan tidak ada medalinya. 😅","🙈","f"],
+["Bagian tersulit dari lari pagi menurut kebanyakan orang?",["Bangun dari kasur","Mengikat tali sepatu","Memilih playlist","Minum air"],0,"Lari 5 km itu gampang, yang berat adalah keluar dari selimut. 🛏️","🛏️","f"],
+["Lari tercepat dalam hidup kebanyakan orang terjadi saat kebelet menuju?",["Toilet","Bulan","Stadion","Pasar malam"],0,"Atlet profesional pun kalah cepat kalau urusannya sudah mendesak. 🚽","🚽","f"],
+["Kalau kamu lari 5 km tapi lupa menyalakan Strava, hasilnya disebut?",["Tidak pernah terjadi","Lari bonus","Lari gratis","Lari nostalgia"],0,"Hukum tak tertulis pelari: kalau tidak ada di Strava, berarti tidak lari. 😂","📱","f"],
+["Anak 90an yang masih main petak umpet saat azan magrib biasanya lari ke mana?",["Pulang sebelum dimarahi ibu","Ke warnet","Ke mal","Ke bioskop"],0,"Teriakan ibu “PULANG!” adalah peluit start paling ampuh. 📢","🌇","f"],
+["Di dongeng, kelinci kalah lomba lari dari kura-kura karena?",["Kelinci tertidur","Kura-kura pakai motor","Kelinci kena macet","Kura-kura curang"],0,"Moralnya: jangan sombong, dan jangan tidur di tengah lomba. 🐢","🐇🐢","f"],
+["Jarak terjauh yang dilari mahasiswa biasanya dari parkiran ke kelas saat?",["Terlambat","Weekend","Libur semester","Gajian"],0,"Kecepatan puncaknya terjadi lima menit setelah dosen masuk. 🎓","🎒","f"],
+["Alasan paling sering pelari makan gorengan setelah lari?",["“Kan sudah bakar kalori”","Disuruh dokter","Takut kelaparan","Sedang diet"],0,"Padahal lari 1 km kira-kira cuma membakar 50-70 kkal, kalah sama satu bakwan. 🤭","🍤","f"],
+["Tulisan 2000an seperti “k4mU ap4 k4bAr” disebut gaya?",["Alay","Baku","Formal","Ilmiah"],0,"Huruf besar-kecil dan angka campur aduk adalah seni tingkat tinggi era Friendster. ✍️","💬","f"],
+["Pelari tercepat di kompleks perumahan biasanya adalah?",["Orang yang dikejar anjing tetangga","Atlet nasional","Kakek-kakek","Tukang bakso"],0,"Rekor dunia pun bisa pecah kalau gonggongannya sudah dekat. 🐕","🐕💨","f"],
+["Lari pagi yang berakhir di warung bubur ayam disebut?",["Lari pagi versi sarapan","Ultra trail","Estafet","Lari gawang"],0,"Garis finis terbaik adalah yang ada kerupuknya. 🍚","🥣","f"],
+["Pose finis terbaik versi pelari yang kehabisan tenaga?",["Tiduran di lintasan","Salto","Splits","Push-up 50 kali"],0,"Bumi adalah kasur paling dekat setelah garis finis. 😴","😮‍💨","f"]
+];
+const AV=["🏃‍♂️","🏃‍♀️","🦊","🐯","🐼","🐸","🦁","🐧","🐰","🐻","🦄","🐢"];
+const AC=["#fde68a","#fbcfe8","#fed7aa","#fde047","#e5e7eb","#bbf7d0","#fcd34d","#bae6fd","#fecdd3","#d6c3a5","#e9d5ff","#a7f3d0"];
+const CATS={l:"🏃 Lari",g:"🖼️ Tebak Gambar",m:"🎲 Permainan Tradisional",n:"📼 Anak 90an",k:"💿 Anak 2000an",s:"👟 Sepatu",f:"😂 Receh & Kocak"};
+const $=id=>document.getElementById(id);
+const N=20,T=15;
+let name="",av=0,qs=[],i=0,score=0,streak=0,tl=T,timer=null,locked=false,poll0=null,view="vHome",prevView="vHome";
+
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+function shuffle(a){a=a.slice();for(let j=a.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]]}return a}
+function avatar(idx,size){const d=document.createElement("span");d.className="av";idx=(idx>=0&&idx<AV.length)?idx:0;d.style.background=AC[idx];d.textContent=AV[idx];if(size)d.style.setProperty("--s",size+"px");return d}
+function show(v){view=v;["vHome","vQuiz","vEnd","vLb"].forEach(x=>$(x).classList.toggle("hide",x!==v));$("ttl").classList.toggle("hide",v!=="vHome");window.scrollTo(0,0)}
+
+function buildGrid(){const g=$("grid");g.innerHTML="";AV.forEach((_,k)=>{const b=document.createElement("button");b.className="pick"+(k===av?" sel":"");b.setAttribute("aria-label","Avatar "+(k+1));b.appendChild(avatar(k,52));b.onclick=()=>{av=k;ls("tl_av",String(k));buildGrid();setPrev()};g.appendChild(b)})}
+function setPrev(){$("prev").replaceChildren(avatar(av,96))}
+
+function start(){
+  const n=$("uname").value.trim().replace(/\s+/g," ");
+  if(n.length<2){$("err").textContent="Isi username minimal 2 karakter";$("uname").focus();return}
+  $("err").textContent="";name=n;ls("tl_name",name);
+  const by=c=>shuffle(BANK.filter(q=>(q[5]||"l")===c));
+  qs=shuffle([...by("l").slice(0,3),...by("g").slice(0,2),...by("m").slice(0,3),...by("n").slice(0,3),...by("k").slice(0,3),...by("s").slice(0,2),...by("f").slice(0,4)]).map(q=>{const c=q[1][q[2]];const o=shuffle(q[1]);return{t:q[0],o,a:o.indexOf(c),e:q[3],v:q[4]||"",c:q[5]||"l"}});
+  i=0;score=0;streak=0;
+  const w=$("who");w.replaceChildren(avatar(av,30),document.createTextNode(name));
+  show("vQuiz");render();
+}
+function startTimer(){clearInterval(timer);timer=setInterval(()=>{tl-=0.1;tick();if(tl<=0)pick(-1)},100)}
+function tick(){const s=Math.max(0,Math.ceil(tl));$("tm").textContent="⏱ 00:"+String(s).padStart(2,"0");$("tm").classList.toggle("warn",tl<=5)}
+function render(){
+  const q=qs[i];locked=false;
+  $("qn").textContent=String(i+1).padStart(2,"0");$("tot").textContent=N;$("bar").style.width=((i+1)/N*100)+"%";
+  $("pts").textContent=score;$("stk").textContent=streak;
+  $("qc").textContent=CATS[q.c];$("qv").textContent=q.v;$("qv").classList.toggle("hide",!q.v);$("qt").textContent=q.t;
+  $("fb").classList.add("hide");$("next").disabled=true;$("next").textContent=i===N-1?"Lihat Hasil":"Lanjut";
+  const box=$("opts");box.innerHTML="";
+  q.o.forEach((t,k)=>{const b=document.createElement("button");b.className="opt";const s=document.createElement("span");s.textContent=t;const ic=document.createElement("span");ic.className="ic";b.append(s,ic);b.onclick=()=>pick(k);box.appendChild(b)});
+  tl=T;tick();startTimer();
+}
+function pick(k){
+  if(locked)return;locked=true;clearInterval(timer);
+  const q=qs[i],btns=[...$("opts").children];btns.forEach(b=>b.disabled=true);
+  btns[q.a].classList.add("ok");btns[q.a].lastChild.textContent="✓";
+  let msg,cls;
+  if(k===q.a){
+    streak++;const speed=Math.round(Math.max(0,tl)/T*10);const sb=Math.min((streak-1)*2,10);
+    const gain=10+speed+sb;score+=gain;cls="ok";
+    msg="✅ Benar! +"+gain+" poin (dasar 10, kecepatan "+speed+", streak "+sb+")\n💡 "+q.e;
+  }else{
+    streak=0;cls="bad";
+    if(k>=0){btns[k].classList.add("bad");btns[k].lastChild.textContent="✕"}
+    msg=(k<0?"⏰ Waktu habis.":"❌ Kurang tepat.")+"\n✔️ Jawaban benar: "+q.o[q.a]+"\n💡 "+q.e;
+  }
+  $("pts").textContent=score;$("stk").textContent=streak;
+  const fb=$("fb");fb.className="fb "+cls;fb.textContent=msg;
+  $("next").disabled=false;fb.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+async function finish(){
+  show("vEnd");$("final").textContent=score;$("endav").replaceChildren(avatar(av,84));$("endname").textContent=name;
+  $("endmsg").textContent=score>=440?"Level pelari elite! 🔥":score>=280?"Mantap, stamina kuat!":score>=140?"Lumayan, terus latihan!":"Pemanasan dulu, coba lagi ya!";
+  saveLocal();await saveGlobal();
+}
+const MON=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+function weekStart(){const d=new Date(Date.now()+7*36e5);const dow=(d.getUTCDay()+6)%7;return new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()-dow))}
+function weekId(){return weekStart().toISOString().slice(0,10)}
+function weekInfo(){const m=weekStart(),e=new Date(m.getTime()+6*864e5);
+  const left=m.getTime()+7*864e5-7*36e5-Date.now();const h=Math.max(0,Math.floor(left/36e5));
+  const t=h>=24?Math.floor(h/24)+" hari "+(h%24)+" jam":h+" jam "+Math.max(0,Math.floor((left%36e5)/6e4))+" menit";
+  return{range:"Minggu ini: "+m.getUTCDate()+" "+MON[m.getUTCMonth()]+" - "+e.getUTCDate()+" "+MON[e.getUTCMonth()],left:"Reset dalam "+t+" (Senin 00.00 WIB)"}}
+function localBoard(){try{const o=JSON.parse(ls("tl_board2")||"{}");return o.week===weekId()?(o.rows||[]):[]}catch(e){return[]}}
+function saveLocal(){const b=localBoard();const ex=b.find(x=>x.name===name);
+  if(ex){ex.av=av;if(score>ex.best)ex.best=score}else b.push({name,av,best:score});
+  ls("tl_board2",JSON.stringify({week:weekId(),rows:b.sort((a,b)=>b.best-a.best).slice(0,20)}))}
+const cfgOk=()=>/^https:\/\//.test(SUPABASE_URL)&&SUPABASE_KEY.length>20;
+const isMe=r=>("mine" in r)?r.mine:r.name===name;
+function pid(){let p=ls("tl_pid");if(!p){p=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==="x"?r:(r&3|8)).toString(16)});ls("tl_pid",p)}return p}
+async function rpc(fn,body){
+  const h={"Content-Type":"application/json",apikey:SUPABASE_KEY};
+  if(SUPABASE_KEY.startsWith("eyJ"))h.Authorization="Bearer "+SUPABASE_KEY;
+  const r=await fetch(SUPABASE_URL+"/rest/v1/rpc/"+fn,{method:"POST",headers:h,body:JSON.stringify(body)});
+  if(!r.ok)throw new Error(fn+" "+r.status);
+  const t=await r.text();return t?JSON.parse(t):null;
+}
+async function saveGlobal(){if(!cfgOk())return;try{await rpc("submit_score",{p_player:pid(),p_name:name,p_av:av,p_score:score})}catch(e){console.error("save failed",e)}}
+function renderLb(rows,note){
+  rows=rows.slice().sort((a,b)=>b.best-a.best);
+  const info=weekInfo();$("wkRange").textContent=info.range;$("wkLeft").textContent=info.left;
+  const pod=$("podium");pod.innerHTML="";
+  [1,0,2].forEach(k=>{const r=rows[k];const c=document.createElement("div");c.className="pc"+(r?"":" empty");
+    const cr=document.createElement("div");cr.className="crown";cr.textContent=(k===0&&r)?"👑":"";
+    const a=avatar(r?(r.av||0):0,k===0?76:60);if(!r)a.textContent="❔";
+    const n=document.createElement("div");n.className="pn";n.textContent=r?r.name+(isMe(r)?" ★":""):"Kosong";
+    const sc=document.createElement("div");sc.className="ps";sc.textContent=r?r.best+" poin":"-";
+    const st=document.createElement("div");st.className="step s"+(k+1);st.textContent=k+1;
+    c.append(cr,a,n,sc,st);pod.appendChild(c)});
+  const box=$("lbList");box.innerHTML="";
+  rows.slice(3).forEach((r,k)=>{const d=document.createElement("div");d.className="row"+(isMe(r)?" me":"");
+    const a=document.createElement("span");a.className="rk";a.textContent=k+4;
+    const b=document.createElement("span");b.className="nm";b.textContent=r.name;
+    const c=document.createElement("span");c.className="sc";c.textContent=r.best;
+    d.append(a,avatar(r.av||0,40),b,c);box.appendChild(d)});
+  $("lbNote").textContent=rows.length?note:"Belum ada skor minggu ini. Jadilah juara pertama! "+note;
+}
+let poll=null;
+function showLb(){
+  prevView=view==="vLb"?prevView:view;show("vLb");clearInterval(poll);poll=null;
+  if(!cfgOk()){renderLb(localBoard(),"Menampilkan skor di perangkat ini. Ranking global belum diaktifkan.");return}
+  const load=async()=>{try{renderLb(await rpc("weekly_top",{p_player:pid()}),"Ranking global: skor terbaik tiap pemain minggu ini.")}
+    catch(e){renderLb(localBoard(),"Ranking global belum bisa dimuat, menampilkan skor di perangkat ini.")}};
+  load();poll=setInterval(()=>{if(view==="vLb")load();else{clearInterval(poll);poll=null}},20000);
+}
+
+$("go").onclick=start;$("again").onclick=start;
+$("uname").addEventListener("keydown",e=>{if(e.key==="Enter")start()});
+$("next").onclick=()=>{i++;i<N?render():finish()};
+$("lb1").onclick=showLb;$("lb2").onclick=showLb;
+$("lbBack").onclick=()=>show(prevView==="vQuiz"?"vHome":prevView);
+$("home2").onclick=()=>show("vHome");
+$("back").onclick=()=>{clearInterval(timer);$("modal").classList.remove("hide")};
+$("stay").onclick=()=>{$("modal").classList.add("hide");if(!locked)startTimer()};
+$("quit").onclick=()=>{$("modal").classList.add("hide");show("vHome")};
+document.addEventListener("keydown",e=>{
+  if(view!=="vQuiz"||!$("modal").classList.contains("hide"))return;
+  if(!locked&&e.key>="1"&&e.key<="4"){const b=$("opts").children[+e.key-1];if(b)pick(+e.key-1)}
+  else if(locked&&(e.key==="Enter"||e.key===" ")&&document.activeElement!==$("next")){e.preventDefault();$("next").click()}
+});
+const sv=ls("tl_name");if(sv)$("uname").value=sv;
+const sa=parseInt(ls("tl_av"),10);av=sa>=0&&sa<AV.length?sa:Math.floor(Math.random()*AV.length);
+buildGrid();setPrev();
+
+
+</script>
+</body>
+</html>
