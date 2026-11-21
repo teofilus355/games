@@ -96,11 +96,24 @@ input:focus{outline:none;border-color:var(--sel)}
 .lock{background:rgba(255,255,255,.16);color:#fff;border-radius:18px;padding:14px 16px;text-align:center;font-size:14px;line-height:1.5}
 .hh{color:#fff;text-align:center;margin:0 0 6px;font-size:20px;font-weight:800}
 #formCard{scroll-margin-top:16px}
+.catrow{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;min-height:36px;margin-bottom:6px}
+.catrow .cat{margin:0}
+.say{color:#fff;font-weight:800;font-size:14px;padding:7px 14px;border-radius:99px;animation:pop .25s ease-out}
+.say.ok{background:var(--ok)}.say.bad{background:var(--bad)}.say.hurry{background:#f59e0b}
+@keyframes pop{from{transform:scale(.6) rotate(-4deg);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.say{animation:none}}
+.shout{font-size:22px;font-weight:800;text-align:center;margin:2px 0 8px;animation:pop .35s ease-out}
+.shout.ok{color:var(--ok)}.shout.bad{color:var(--bad)}
+.nudge{position:absolute;left:50%;top:-17px;transform:translateX(-50%);background:#f59e0b;color:#fff;font-weight:800;font-size:14px;padding:6px 18px;border-radius:99px;box-shadow:0 4px 0 #b45309;white-space:nowrap;z-index:2;animation:shake .5s}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(-50%)}20%{transform:translateX(calc(-50% - 7px))}40%{transform:translateX(calc(-50% + 7px))}60%{transform:translateX(calc(-50% - 4px))}80%{transform:translateX(calc(-50% + 4px))}}
+@media (prefers-reduced-motion:reduce){.shout,.nudge{animation:none}}
+.grid{max-height:236px;overflow-y:auto;padding:4px;scrollbar-width:thin}
 </style>
 </head>
 <body>
 <main>
-<div class="snd"><button class="sb" id="bMusic" aria-label="Musik latar" aria-pressed="true">🎵</button><button class="sb" id="bSfx" aria-label="Efek suara" aria-pressed="true">🔊</button></div>
+<div class="snd"><button class="sb" id="bMusic" aria-label="Musik latar" aria-pressed="true">🎵</button><button class="sb" id="bSfx" aria-label="Efek suara" aria-pressed="true">🔊</button><button class="sb" id="bVo" aria-label="Suara komentar" aria-pressed="true">🗣️</button></div>
 <div class="ttl" id="ttl"><h1>🏃💨 Lari Kuy!</h1><p>Trivia nostalgia anak 90an &amp; 2000an. Ngegas atau ketinggalan!</p></div>
 
 <section id="vHome">
@@ -113,12 +126,12 @@ input:focus{outline:none;border-color:var(--sel)}
 </div>
 <div class="card center" id="formCard">
 <div id="prev" style="display:flex;justify-content:center"></div>
-<div class="lbl">Pilih avatarmu</div>
+<div class="lbl">Pilih avatarmu <small style="font-weight:500;color:var(--mute)">(24 pilihan, scroll ke bawah)</small></div>
 <div class="grid" id="grid"></div>
 <div class="lbl" style="text-align:left">Username</div>
 <input id="uname" maxlength="16" placeholder="contoh: PelariPagi" autocomplete="off">
 <div class="err" id="err"></div>
-<p class="rule">Siap lari lewat nostalgia? Jawab bener, jawab ngebut, jaga streak, dan jangan kaget kalau ketemu soal receh yang bikin ketawa. Ranking mingguan di-reset tiap Senin, jadi semua punya kesempatan naik podium! 🏆</p>
+<p class="rule">Siap lari lewat nostalgia? Jawab bener, jawab ngebut, jaga streak, dan jangan kaget kalau ketemu soal receh yang bikin ketawa. Kejar podium dan jadi juara minggu ini! 🏆</p>
 </div>
 <button class="cta" id="go">Mulai Main</button>
 </section>
@@ -130,7 +143,8 @@ input:focus{outline:none;border-color:var(--sel)}
 <div class="prog"><i id="bar"></i></div>
 <div class="meta"><span id="who"></span><span>⭐ <b id="pts">0</b> · 🔥 <b id="stk">0</b></span></div>
 <div class="stack"><div class="card">
-<div class="cat" id="qc"></div><div class="vis" id="qv"></div><p class="q" id="qt"></p>
+<div class="nudge hide" id="nudge">⚡ Cepetan woyy!</div>
+<div class="catrow"><div class="cat" id="qc"></div><div class="say hide" id="say" role="status" aria-live="polite"></div></div><div class="vis" id="qv"></div><p class="q" id="qt"></p>
 <div id="opts"></div><div class="fb hide" id="fb"></div>
 </div></div>
 <button class="next" id="next" disabled>Lanjut</button>
@@ -263,10 +277,34 @@ const BANK=[
 ["Tulisan 2000an seperti “k4mU ap4 k4bAr” disebut gaya?",["Alay","Baku","Formal","Ilmiah"],0,"Huruf besar-kecil dan angka campur aduk adalah seni tingkat tinggi era Friendster. ✍️","💬","f"],
 ["Pelari tercepat di kompleks perumahan biasanya adalah?",["Orang yang dikejar anjing tetangga","Atlet nasional","Kakek-kakek","Tukang bakso"],0,"Rekor dunia pun bisa pecah kalau gonggongannya sudah dekat. 🐕","🐕💨","f"],
 ["Lari pagi yang berakhir di warung bubur ayam disebut?",["Lari pagi versi sarapan","Ultra trail","Estafet","Lari gawang"],0,"Garis finis terbaik adalah yang ada kerupuknya. 🍚","🥣","f"],
-["Pose finis terbaik versi pelari yang kehabisan tenaga?",["Tiduran di lintasan","Salto","Splits","Push-up 50 kali"],0,"Bumi adalah kasur paling dekat setelah garis finis. 😴","😮‍💨","f"]
+["Pose finis terbaik versi pelari yang kehabisan tenaga?",["Tiduran di lintasan","Salto","Splits","Push-up 50 kali"],0,"Bumi adalah kasur paling dekat setelah garis finis. 😴","😮‍💨","f"],
+["LSD dalam latihan lari artinya?",["Long Slow Distance","Lari Super Dekat","Light Speed Drill","Last Sprint Day"],0,"Long Slow Distance: lari jauh dengan tempo santai untuk membangun daya tahan. Kecepatannya cukup pelan sampai kamu masih bisa mengobrol.","","l"],
+["Fartlek, metode latihan lari, berasal dari bahasa?",["Swedia","Jepang","Spanyol","Arab"],0,"Fartlek dalam bahasa Swedia berarti “permainan kecepatan”: kamu berganti-ganti lari cepat dan santai secara bebas, tanpa jadwal ketat.","","l"],
+["Negative split dalam lomba lari artinya?",["Paruh kedua lebih cepat dari paruh pertama","Lari mundur","Berhenti di tengah lomba","Lari dua kali"],0,"Banyak pelari memakai strategi ini: mulai terkendali, lalu menambah kecepatan di paruh akhir supaya tenaga tidak habis di awal.","","l"],
+["Tapering sebelum lomba lari artinya?",["Mengurangi volume latihan agar tubuh segar","Menambah jarak latihan","Berhenti makan","Ganti sepatu baru"],0,"Tapering biasanya dilakukan 1-3 minggu sebelum lomba besar: jarak latihan dikurangi supaya otot pulih dan kamu start dalam kondisi segar.","","l"],
+["Carbo loading sebelum maraton bertujuan untuk?",["Menambah cadangan energi (glikogen)","Menurunkan berat badan","Menambah tinggi badan","Menggantikan minum"],0,"Karbohidrat disimpan otot sebagai glikogen. Menambah asupan karbohidrat 1-3 hari sebelum lomba panjang membantu mengisi cadangan energi.","🍝","l"],
+["Pelari maraton sering “menabrak tembok” (hit the wall) di sekitar kilometer?",["30-35","5-10","12-15","40-42"],0,"“Tembok” terjadi saat cadangan glikogen menipis, biasanya sekitar km 30-35. Mengatur pace dan asupan energi membantu menundanya.","🧱","l"],
+["Latihan interval berarti?",["Bergantian lari cepat dan istirahat singkat","Lari santai terus-menerus","Jalan kaki saja","Lari mundur"],0,"Interval melatih kecepatan serta kapasitas jantung dan paru lewat repetisi lari cepat yang diselingi jeda pemulihan.","","l"],
+["Tempo run adalah lari di kecepatan yang terasa?",["Nyaman tapi menantang","Sangat santai","Sprint penuh","Jalan lambat"],0,"Tempo run dilakukan di tingkat usaha “agak berat tapi terkendali”. Berguna untuk meningkatkan ketahanan di kecepatan lomba.","","l"],
+["Nyeri di tulang kering akibat lari berlebihan sering disebut?",["Shin splints","Runner’s high","Side stitch","Kram lidah"],0,"Shin splints sering muncul saat jarak atau intensitas latihan naik terlalu cepat. Istirahat dan menaikkan beban secara bertahap biasanya dianjurkan.","🦵","l"],
+["Nyeri tusuk di sisi perut saat lari sering disebut?",["Side stitch","Shin splints","Heat stroke","Blister"],0,"Side stitch (kram perut samping) cukup umum. Menurunkan tempo dan mengatur napas biasanya membantu meredakannya.","","l"],
+["Aturan 10 persen dalam lari menyarankan?",["Naikkan jarak mingguan maksimal sekitar 10%","Lari 10 km tiap hari","Istirahat 10 hari","Minum 10 gelas sehari"],0,"Patokan populer untuk mengurangi risiko cedera: tambah jarak mingguan secara bertahap, bukan lonjakan besar. Ini panduan umum, bukan hukum pasti.","","l"],
+["Pace 5:00 menit/km setara kecepatan berapa km/jam?",["12","10","15","8"],0,"60 menit dibagi 5 menit per km = 12 km/jam. Rumus cepatnya: 60 dibagi pace (dalam menit).","","l"],
+["Roger Bannister dikenal sebagai orang pertama yang?",["Berlari 1 mil di bawah 4 menit","Menang maraton Olimpiade","Berlari 100 m di bawah 10 detik","Berlari 100 km"],0,"Pada 1954 Bannister mencatat sekitar 3:59,4 untuk 1 mil, memecahkan batas yang dulu dianggap mustahil.","🏅","l"],
+["Abebe Bikila memenangi maraton Olimpiade Roma 1960 dengan cara?",["Berlari tanpa alas kaki","Naik sepeda","Memakai sepatu emas","Berlari mundur"],0,"Bikila dari Ethiopia berlari bertelanjang kaki di Roma 1960 dan finis dengan catatan waktu terbaik dunia saat itu.","👣","l"],
+["Emil Zátopek mencatat sejarah di Olimpiade Helsinki 1952 dengan memenangi?",["5.000 m, 10.000 m, dan maraton","Hanya 100 m","Lompat jauh","Estafet 4x100 m"],0,"Zátopek meraih tiga emas dalam satu Olimpiade, termasuk maraton yang baru pertama kali ia ikuti.","","l"],
+["Pelari berangkat sebelum aba-aba start disebut?",["False start","Fast start","Long start","Slow start"],0,"Dalam lari lintasan, berangkat sebelum aba-aba disebut false start. Pada aturan World Athletics saat ini, pelakunya didiskualifikasi.","🚦","l"],
+["Kenapa start lari 400 m dibuat bertingkat (staggered)?",["Lajur luar lebih panjang di tikungan","Biar kelihatan keren","Supaya tidak bertabrakan di finis","Aturan lama tanpa alasan"],0,"Lajur luar punya kurva lebih besar sehingga jaraknya lebih panjang. Start lajur luar dimajukan agar semua pelari menempuh 400 m yang sama.","🏟️","l"],
+["Maraton tahunan tertua di Amerika Serikat?",["Boston Marathon","New York City Marathon","Chicago Marathon","Honolulu Marathon"],0,"Boston Marathon pertama kali digelar pada 1897 dan menjadi salah satu maraton paling bergengsi di dunia.","","l"],
+["Borobudur Marathon digelar di sekitar candi Borobudur, wilayah?",["Magelang, Jawa Tengah","Bandung, Jawa Barat","Surabaya, Jawa Timur","Medan, Sumatra Utara"],0,"Candi Borobudur berada di Kabupaten Magelang, Jawa Tengah, tak jauh dari Yogyakarta.","🛕","l"],
+["1 mil sama dengan berapa kilometer?",["Sekitar 1,6 km","1 km","2 km","0,5 km"],0,"1 mil = 1,609 km, kira-kira empat putaran lintasan 400 m (1.600 m).","","l"],
+["Lari yang jaraknya lebih panjang dari maraton disebut?",["Ultramaraton","Half marathon","Sprint","Estafet"],0,"Ultramaraton adalah lomba lari di atas 42,195 km, misalnya 50 km, 100 km, atau lebih.","⛰️","l"],
+["Kadensi lari adalah?",["Jumlah langkah per menit","Jarak total lari","Berat sepatu","Tinggi lompatan"],0,"Patokan populer sekitar 170-180 langkah per menit, tapi kadensi ideal berbeda tiap orang dan tiap kecepatan.","👣","l"],
+["10.000 m di lintasan 400 m butuh berapa putaran?",["25","10","40","12,5"],0,"10.000 dibagi 400 = 25 putaran. Nomor 5.000 m butuh 12,5 putaran.","🔁","l"],
+["Detak jantung istirahat pelari yang terlatih biasanya cenderung?",["Lebih rendah","Lebih tinggi","Sama untuk semua orang","Berhenti"],0,"Jantung terlatih memompa lebih banyak darah per detak, sehingga detak istirahat sering lebih rendah. Ini hanya kecenderungan, bukan satu-satunya ukuran kebugaran.","🫀","l"]
 ];
-const AV=["🏃‍♂️","🏃‍♀️","🦊","🐯","🐼","🐸","🦁","🐧","🐰","🐻","🦄","🐢"];
-const AC=["#fde68a","#fbcfe8","#fed7aa","#fde047","#e5e7eb","#bbf7d0","#fcd34d","#bae6fd","#fecdd3","#d6c3a5","#e9d5ff","#a7f3d0"];
+const AV=["🏃‍♂️","🏃‍♀️","🦊","🐯","🐼","🐸","🦁","🐧","🐰","🐻","🦄","🐢","🐶","🐱","🐵","🐨","🐮","🐷","🐥","🦉","🐙","🦖","🤖","👽"];
+const AC=["#fde68a","#fbcfe8","#fed7aa","#fde047","#e5e7eb","#bbf7d0","#fcd34d","#bae6fd","#fecdd3","#d6c3a5","#e9d5ff","#a7f3d0","#fef08a","#c4b5fd","#fca5a5","#a5f3fc","#fdba74","#f9a8d4","#fcd5ce","#bef264","#93c5fd","#d9f99d","#e2e8f0","#fdc5f5"];
 const CATS={l:"🏃 Lari",g:"🖼️ Tebak Gambar",m:"🎲 Permainan Tradisional",n:"📼 Anak 90an",k:"💿 Anak 2000an",s:"👟 Sepatu",f:"😂 Receh & Kocak"};
 const $=id=>document.getElementById(id);
 const N=20,T=15;
@@ -311,8 +349,25 @@ const SND=(()=>{
       if(n>=3){tone(1046.5,t+.3,.15,"sine",.25,sfxG);tone(1318.5,t+.38,.3,"sine",.25,sfxG)}}),
     bad:()=>play(t=>{tone(260,t,.3,"sawtooth",.18,sfxG,120);tone(180,t+.18,.35,"sawtooth",.18,sfxG,70)}),
     tick:()=>play(t=>tone(1300,t,.04,"square",.08,sfxG)),
+    nudge:()=>play(t=>{tone(880,t,.08,"square",.14,sfxG);tone(880,t+.13,.1,"square",.14,sfxG)}),
     start:()=>play(t=>tone(300,t,.28,"triangle",.3,sfxG,1000)),
     fanfare:sc=>play(t=>{(sc>=280?[523.25,659.25,783.99,1046.5,783.99,1046.5,1318.5]:[392,523.25,659.25]).forEach((f,i)=>tone(f,t+i*.13,.25,"square",.2,sfxG))})
+  };
+})();
+const VO=(()=>{
+  let on=ls("tl_vo")!=="0",voice=null,cur=null;
+  const syn=window.speechSynthesis;
+  const FILES={"josjisss benar":"audio/benar.mp3","gitu aja salah":"audio/salah.mp3","cepetan woyy":"audio/cepat.mp3"};
+  function pickVoice(){if(!syn)return;try{const vs=syn.getVoices();voice=vs.find(v=>/^id[-_]ID/i.test(v.lang))||vs.find(v=>/^id/i.test(v.lang))||null}catch(e){}}
+  if(syn){pickVoice();try{syn.onvoiceschanged=pickVoice}catch(e){}}
+  function tts(t){if(!syn)return;try{syn.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="id-ID";if(voice)u.voice=voice;u.rate=1.05;u.pitch=1.15;syn.speak(u)}catch(e){}}
+  return{
+    isOn:()=>on,
+    setOn(v){on=v;ls("tl_vo",v?"1":"0");if(!v)this.stop()},
+    stop(){try{if(syn)syn.cancel();if(cur){cur.pause();cur=null}}catch(e){}},
+    unlock(){try{if(syn&&on){const u=new SpeechSynthesisUtterance(" ");u.volume=0;syn.speak(u)}}catch(e){}},
+    say(t){if(!on||!t)return;this.stop();let fell=false;const fb=()=>{if(!fell){fell=true;tts(t)}};
+      try{const a=new Audio(FILES[t]);cur=a;a.onerror=fb;const p=a.play();if(p&&p.catch)p.catch(fb)}catch(e){fb()}}
   };
 })();
 function avatar(idx,size){const d=document.createElement("span");d.className="av";idx=(idx>=0&&idx<AV.length)?idx:0;d.style.background=AC[idx];d.textContent=AV[idx];if(size)d.style.setProperty("--s",size+"px");return d}
@@ -326,40 +381,46 @@ function start(){
   if(n.length<2){$("err").textContent="Isi username minimal 2 karakter";$("uname").focus();return}
   $("err").textContent="";name=n;ls("tl_name",name);
   const by=c=>shuffle(BANK.filter(q=>(q[5]||"l")===c));
-  qs=shuffle([...by("l").slice(0,3),...by("g").slice(0,2),...by("m").slice(0,3),...by("n").slice(0,3),...by("k").slice(0,3),...by("s").slice(0,2),...by("f").slice(0,4)]).map(q=>{const c=q[1][q[2]];const o=shuffle(q[1]);return{t:q[0],o,a:o.indexOf(c),e:q[3],v:q[4]||"",c:q[5]||"l"}});
+  qs=shuffle([...by("l").slice(0,5),...by("g").slice(0,2),...by("m").slice(0,3),...by("n").slice(0,3),...by("k").slice(0,2),...by("s").slice(0,2),...by("f").slice(0,3)]).map(q=>{const c=q[1][q[2]];const o=shuffle(q[1]);return{t:q[0],o,a:o.indexOf(c),e:q[3],v:q[4]||"",c:q[5]||"l"}});
   i=0;score=0;streak=0;
   const w=$("who");w.replaceChildren(avatar(av,30),document.createTextNode(name));
-  SND.init();SND.startMusic();SND.start();show("vQuiz");render();
+  SND.init();SND.startMusic();SND.start();VO.unlock();show("vQuiz");render();
 }
-let lastSec=0;
-function startTimer(){clearInterval(timer);lastSec=Math.ceil(tl);timer=setInterval(()=>{tl-=0.1;tick();const c=Math.ceil(tl);if(c!==lastSec&&c<=5&&c>0)SND.tick();lastSec=c;if(tl<=0)pick(-1)},100)}
+let hurryT=null;
+function say(t,c){const e=$("say");e.textContent=t;e.className="say "+c;VO.say({ok:"josjisss benar",bad:"gitu aja salah",hurry:"cepetan woyy"}[c])}
+function hideSay(){VO.stop();const e=$("say");e.textContent="";e.className="say hide"}
+let lastSec=0,nudged=false;
+function startTimer(){clearInterval(timer);lastSec=Math.ceil(tl);timer=setInterval(()=>{tl-=0.1;tick();const c=Math.ceil(tl);if(c!==lastSec&&c<=5&&c>0)SND.tick();lastSec=c;
+  if(!nudged&&!locked&&T-tl>=2){nudged=true;$("nudge").classList.remove("hide");SND.nudge()}
+  if(tl<=0)pick(-1)},100)}
 function tick(){const s=Math.max(0,Math.ceil(tl));$("tm").textContent="⏱ 00:"+String(s).padStart(2,"0");$("tm").classList.toggle("warn",tl<=5)}
 function render(){
   const q=qs[i];locked=false;
   $("qn").textContent=String(i+1).padStart(2,"0");$("tot").textContent=N;$("bar").style.width=((i+1)/N*100)+"%";
   $("pts").textContent=score;$("stk").textContent=streak;
   $("qc").textContent=CATS[q.c];$("qv").textContent=q.v;$("qv").classList.toggle("hide",!q.v);$("qt").textContent=q.t;
+  hideSay();clearTimeout(hurryT);hurryT=setTimeout(()=>{if(!locked&&view==="vQuiz"&&$("modal").classList.contains("hide"))say("⏰ cepetan woyy","hurry")},2000);
   $("fb").classList.add("hide");$("next").disabled=true;$("next").textContent=i===N-1?"Lihat Hasil":"Lanjut";
   const box=$("opts");box.innerHTML="";
   q.o.forEach((t,k)=>{const b=document.createElement("button");b.className="opt";const s=document.createElement("span");s.textContent=t;const ic=document.createElement("span");ic.className="ic";b.append(s,ic);b.onclick=()=>pick(k);box.appendChild(b)});
-  tl=T;tick();startTimer();
+  tl=T;nudged=false;$("nudge").classList.add("hide");tick();startTimer();
 }
 function pick(k){
-  if(locked)return;locked=true;clearInterval(timer);
+  if(locked)return;locked=true;clearInterval(timer);$("nudge").classList.add("hide");clearTimeout(hurryT);
   const q=qs[i],btns=[...$("opts").children];btns.forEach(b=>b.disabled=true);
   btns[q.a].classList.add("ok");btns[q.a].lastChild.textContent="✓";
   let msg,cls;
   if(k===q.a){
     streak++;const speed=Math.round(Math.max(0,tl)/T*10);const sb=Math.min((streak-1)*2,10);
-    const gain=10+speed+sb;score+=gain;cls="ok";SND.ok(streak);
-    msg="✅ Benar! +"+gain+" poin (dasar 10, kecepatan "+speed+", streak "+sb+")\n💡 "+q.e;
+    const gain=10+speed+sb;score+=gain;cls="ok";SND.ok(streak);say("🔥 josjisss benar","ok");
+    msg="+"+gain+" poin (dasar 10, kecepatan "+speed+", streak "+sb+")\n💡 Tahukah kamu? "+q.e;
   }else{
-    streak=0;cls="bad";SND.bad();
+    streak=0;cls="bad";SND.bad();say("😜 gitu aja salah","bad");
     if(k>=0){btns[k].classList.add("bad");btns[k].lastChild.textContent="✕"}
-    msg=(k<0?"⏰ Waktu habis.":"❌ Kurang tepat.")+"\n✔️ Jawaban benar: "+q.o[q.a]+"\n💡 "+q.e;
+    msg=(k<0?"⏰ Waktu habis.\n":"")+"✔️ Jawaban benar: "+q.o[q.a]+"\n💡 Tahukah kamu? "+q.e;
   }
   $("pts").textContent=score;$("stk").textContent=streak;
-  const fb=$("fb");fb.className="fb "+cls;fb.textContent=msg;
+  const fb=$("fb");fb.className="fb "+cls;fb.replaceChildren();const sh=document.createElement("div");sh.className="shout "+cls;sh.textContent=cls==="ok"?"🔥 Josjisss benar!":"😏 Gitu aja salah!";const bd=document.createElement("div");bd.textContent=msg;fb.append(sh,bd);
   $("next").disabled=false;fb.scrollIntoView({block:"nearest",behavior:"smooth"});
 }
 async function finish(){
@@ -392,7 +453,7 @@ async function rpc(fn,body){
 async function saveGlobal(){if(!cfgOk())return;try{await rpc("submit_score",{p_player:pid(),p_name:name,p_av:av,p_score:score})}catch(e){console.error("save failed",e)}}
 function renderLb(rows,note,pre=""){
   rows=rows.slice().sort((a,b)=>b.best-a.best);
-  const info=weekInfo();$(pre+"wkRange").textContent=info.range;$(pre+"wkLeft").textContent=info.left;
+  const info=weekInfo();$(pre+"wkRange").textContent=info.range;$(pre+"wkLeft").textContent="";
   const pod=$(pre+"podium");pod.innerHTML="";
   [1,0,2].forEach(k=>{const r=rows[k];const c=document.createElement("div");c.className="pc"+(r?"":" empty");
     const cr=document.createElement("div");cr.className="crown";cr.textContent=(k===0&&r)?"👑":"";
@@ -439,7 +500,7 @@ $("next").onclick=()=>{i++;i<N?render():finish()};
 $("lb2").onclick=showLb;
 $("lbBack").onclick=()=>show(prevView==="vQuiz"?"vHome":prevView);
 $("home2").onclick=()=>show("vHome");
-$("back").onclick=()=>{clearInterval(timer);$("modal").classList.remove("hide")};
+$("back").onclick=()=>{clearInterval(timer);clearTimeout(hurryT);VO.stop();$("modal").classList.remove("hide")};
 $("stay").onclick=()=>{$("modal").classList.add("hide");if(!locked)startTimer()};
 $("quit").onclick=()=>{$("modal").classList.add("hide");show("vHome")};
 document.addEventListener("keydown",e=>{
@@ -449,12 +510,13 @@ document.addEventListener("keydown",e=>{
 });
 const sv=ls("tl_name");if(sv)$("uname").value=sv;
 const sa=parseInt(ls("tl_av"),10);av=sa>=0&&sa<AV.length?sa:Math.floor(Math.random()*AV.length);
-const bM=$("bMusic"),bS=$("bSfx");
-function paintSnd(){const m=SND.isMusic(),f=SND.isSfx();bM.textContent=m?"🎵":"🔕";bS.textContent=f?"🔊":"🔇";bM.setAttribute("aria-pressed",String(m));bS.setAttribute("aria-pressed",String(f))}
+const bM=$("bMusic"),bS=$("bSfx"),bV=$("bVo");
+function paintSnd(){const m=SND.isMusic(),f=SND.isSfx(),v=VO.isOn();bM.textContent=m?"🎵":"🔕";bS.textContent=f?"🔊":"🔇";bV.textContent=v?"🗣️":"🤐";bM.setAttribute("aria-pressed",String(m));bS.setAttribute("aria-pressed",String(f));bV.setAttribute("aria-pressed",String(v))}
 bM.onclick=()=>{SND.init();SND.setMusic(!SND.isMusic());paintSnd()};
 bS.onclick=()=>{SND.init();SND.setSfx(!SND.isSfx());paintSnd();SND.tap()};
-document.addEventListener("click",e=>{const b=e.target.closest("button");if(b&&!b.classList.contains("opt")&&b.id!=="bMusic"&&b.id!=="bSfx")SND.tap()});
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(b&&!b.classList.contains("opt")&&b.id!=="bMusic"&&b.id!=="bSfx"&&b.id!=="bVo")SND.tap()});
 document.addEventListener("visibilitychange",()=>SND.visible(!document.hidden));
+bV.onclick=()=>{VO.setOn(!VO.isOn());paintSnd();if(VO.isOn())VO.say("josjisss benar")};
 paintSnd();
 buildGrid();setPrev();loadRank();
 
